@@ -7,9 +7,9 @@
     <title>Configuración juego de preguntas</title>
 </head>
 <body>
-    <h5 id="nivel_pregunta">Nivel de pregunta</h5>
+    <h5 id="nivel_pregunta">Nivel de pregunta</h5> <!--Te dice el nivel de preguntas que estas configurando-->
     <div>
-        <form action="">
+        <form action=""><!--Formulario para ingresar las preguntas-->
             <label for="pregunta">Ingrese la pregunta:</label>
             <input type="text" name="pregunta" id="pregunta"><br>
             <label for="res_correcta">Ingrese la respuesta correcta:</label>
@@ -21,7 +21,8 @@
             <label for="res_incorrecta3">Ingrese la respuesta incorrecta 3:</label>
             <input type="text" name="res_incorrecta3"><br>
         </form>
-        <button>Guardar Pregunta</button>
+        <button>Guardar Pregunta</button><!--Boton para guardar la pregunta formulada-->
+        <button>Siguiente nivel de preguntas</button><!--boton que se activa solo cuando tenes minimo 5 preguntas ya creadas por el nivel actual-->
     </div>
 </body>
 </html>
