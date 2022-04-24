@@ -7,22 +7,36 @@
     <title>Configuración juego de preguntas</title>
 </head>
 <body>
-    <h5 id="nivel_pregunta">Nivel de pregunta</h5> <!--Te dice el nivel de preguntas que estas configurando-->
-    <div>
+    <div id="sele_categorias">
+        <form action="">
+            <label for="categoria">Selecciona una categoria en la cual agregar preguntas:</label>
+            <select id="categoria">
+                        
+            </select>
+        </form>
+        <button id="agregar_preguntas">Agregar preguntas</button>
+    </div>
+    <div id="preguntas">
+        <h5 id="nivel_pregunta"></h5> <!--Te dice el nivel de preguntas que estas configurando-->
         <form action=""><!--Formulario para ingresar las preguntas-->
             <label for="pregunta">Ingrese la pregunta:</label>
             <input type="text" name="pregunta" id="pregunta"><br>
+
             <label for="res_correcta">Ingrese la respuesta correcta:</label>
             <input type="text" name="res_correcta" id="res_correcta"><br>
+
             <label for="res_incorrecta1">Ingrese la respuesta incorrecta 1:</label>
             <input type="text" name="res_incorrecta1" id="res_incorrecta1" ><br>
+
             <label for="res_incorrecta2">Ingrese la respuesta incorrecta 2:</label>
             <input type="text" name="res_incorrecta2" id="res_incorrecta2" ><br>
+
             <label for="res_incorrecta3">Ingrese la respuesta incorrecta 3:</label>
             <input type="text" name="res_incorrecta3" id="res_incorrecta3" >
         </form>
         <button id="guardar">Guardar Pregunta</button><!--Boton para guardar la pregunta formulada-->
-        <button id="siguiente_nivel">Siguiente nivel de preguntas</button><!--boton que se activa solo cuando tenes minimo 5 preguntas ya creadas por el nivel actual-->
+        <button id="siguiente_nivel">Siguiente categoria de preguntas</button><!--boton que se activa solo cuando tenes minimo 5 preguntas ya creadas por el nivel actual-->
     </div>
+    <script src="js/configuracion.js"></script>
 </body>
 </html>
