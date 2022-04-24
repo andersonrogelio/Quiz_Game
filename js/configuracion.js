@@ -14,6 +14,8 @@ var auxiliar = {
 document.getElementById("siguiente_nivel").style.visibility = "hidden";
 //hago que el form se vuelva invisible 
 document.getElementById("preguntas").style.visibility = "hidden";
+//no mostrar el boton que te habilita ir a la pantalla principal para luego comenzar el juego
+document.getElementById("iniciar").style.visibility = "hidden";
 //imprimo en pantalla en que categoria estan guardando las preguntas
 function mostrar_categoria(){
     document.getElementById("nivel_pregunta").innerHTML = `Preguntas de categoria `+ categorias[categoria_selecionada] ;
@@ -71,12 +73,18 @@ function siguiente_nivel(){
         arreglo_auxiliar = [];
     };
 };
-
+function comenzar_juego(){
+    if(arreglo_preguntas.length === 5){
+        document.getElementById("iniciar").style.visibility = "visible";
+    };
+};
 document.getElementById("guardar").addEventListener("click",function(e){
-
-    guardar_preguntas();
-    siguiente_nivel();
-    //Me falta controlar que los campos de introduccion de informacion no esten vacios
+    if (document.getElementById("pregunta").value ==="" || document.getElementById("res_correcta").value === "" ||   document.getElementById("res_incorrecta1").value ==="" ||  document.getElementById("res_incorrecta2").value ==="" ||  document.getElementById("res_incorrecta3").value ===""){
+        alert("Faltan campos por completar");
+    }else{
+        guardar_preguntas();
+        siguiente_nivel();
+    }
 });
 
 document.getElementById("agregar_preguntas").addEventListener("click",function(e){
@@ -95,5 +103,9 @@ document.getElementById("siguiente_nivel").addEventListener("click",function(e){
     document.getElementById("sele_categorias").style.visibility = "visible";
     document.getElementById("preguntas").style.visibility = "hidden";
     document.getElementById("siguiente_nivel").style.visibility = "hidden";
-
+    comenzar_juego();
+});
+document.getElementById("iniciar").addEventListener("click",function(e){
+    window.location.href = "pantalla_inicial.html";
+    localStorage.setItem("preguntas",arreglo_preguntas);
 });
