@@ -2,14 +2,16 @@
 var categorias = ["Paises","Ciudades","Deportes","Famosos","Curiosidades"]
 var categoria_selecionada;
 var arreglo_preguntas=[];
-var arreglo_auxiliar = [];
+var niveles = 0;
 var auxiliar = {
-    P:'',
-    C: '',
-    I1: '',
-    I2: '',
-    I3:' '
+    "CAT":"",
+    "P":"",
+    "C": "",
+    "I1": "",
+    "I2": "",
+    "I3":""
 };
+var arreglo_auxiliar = [];
 //Hago el boton para pasar a configurar las preguntas del siguiente invisible hasta que se tenga las 5 preguntas necesarias por nivel
 document.getElementById("siguiente_nivel").style.visibility = "hidden";
 //hago que el form se vuelva invisible 
@@ -18,7 +20,7 @@ document.getElementById("preguntas").style.visibility = "hidden";
 document.getElementById("iniciar").style.visibility = "hidden";
 //imprimo en pantalla en que categoria estan guardando las preguntas
 function mostrar_categoria(){
-    document.getElementById("nivel_pregunta").innerHTML = `Preguntas de categoria `+ categorias[categoria_selecionada] ;
+    document.getElementById("nivel_pregunta").innerHTML = `Preguntas de categoria `+ categorias[categoria_selecionada] +` y de nivel `+ niveles ;
 
 }
 
@@ -42,6 +44,7 @@ document.getElementById("res_incorrecta3").value="";
 };
 //funcion que me guarda las preguntas en un arreglo
 function guardar_preguntas(){
+    auxiliar.CAT = categorias[document.getElementById("categoria").value];
    let pre = document.getElementById("pregunta").value;
     auxiliar.P = pre;
    let r_c = document.getElementById("res_correcta").value;
@@ -53,8 +56,10 @@ function guardar_preguntas(){
     let r_i3 = document.getElementById("res_incorrecta3").value;
     auxiliar.I3 = r_i3;
     arreglo_auxiliar.push(JSON.stringify(auxiliar));
+    // arreglo_auxiliar.push(auxiliar);
     console.log(arreglo_auxiliar);
     limpiar_campos();
+    auxiliar.CAT="";
     auxiliar.P = "";
     auxiliar.C="";
     auxiliar.I1= "";
@@ -67,8 +72,12 @@ function siguiente_nivel(){
     //     // arreglo_preguntas.push(JSON.stringify(arreglo_auxiliar));
     //     arreglo_preguntas.push(arreglo_auxiliar);
     // }else
-     if (arreglo_auxiliar.length === 5){
+     if (arreglo_auxiliar.length === 1){
         arreglo_preguntas.push(arreglo_auxiliar);
+        // console.log(arreglo_preguntas);
+        // console.log(preguntas);
+        // console.log(preguntas[0]);
+        // console.log(JSON.parse(preguntas[0]));
         document.getElementById("siguiente_nivel").style.visibility = "visible";
         arreglo_auxiliar = [];
     };
@@ -90,8 +99,9 @@ document.getElementById("guardar").addEventListener("click",function(e){
 document.getElementById("agregar_preguntas").addEventListener("click",function(e){
     categoria_selecionada = document.getElementById("categoria").value;
      console.log(categoria_selecionada);
+     niveles = niveles + 1; 
     mostrar_categoria();
-arreglo_auxiliar.push(categorias[document.getElementById("categoria").value]);
+// arreglo_auxiliar.push(categorias[document.getElementById("categoria").value]);
 // console.log(arreglo_auxiliar);
 document.getElementById("sele_categorias").style.visibility = "hidden";
 document.getElementById("preguntas").style.visibility = "visible";
@@ -107,5 +117,6 @@ document.getElementById("siguiente_nivel").addEventListener("click",function(e){
 });
 document.getElementById("iniciar").addEventListener("click",function(e){
     window.location.href = "pantalla_inicial.html";
-    localStorage.setItem("preguntas",arreglo_preguntas);
+    console.log(arreglo_preguntas);
+    localStorage.setItem("preguntas",JSON.stringify(arreglo_preguntas));
 });
