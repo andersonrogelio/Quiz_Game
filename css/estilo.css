@@ -5,6 +5,8 @@ body{
     background-position: center;
     background-attachment: fixed;
 }
+
+/* index */
 .cont_usuario{
     background-color: rgba(0,128,255,0.5);
     border-radius: 10px;
@@ -20,3 +22,71 @@ body{
      /* display: table-cell;
     vertical-align: middle; */
 }
+/* pantalla principal */
+.juego{
+    background-color: rgba(0,128,255,0.5);
+    border-radius: 10px;
+    width: 500px;
+    height: 400px;
+    margin: auto;
+    margin-top: 10%;
+}
+.juego h3{
+    text-align: center;
+}
+.juego p{
+    text-align: center;
+}
+.histo{
+    background-color: white;
+    border-radius: 10px;
+    height: 250px;
+    width: 250px;
+    margin: auto;
+    margin-top: 10%;
+}
+.controles{
+display: flex;
+justify-content: center;
+}
+.controles button{
+    background-color: white;
+    border: none;
+    text-align: center;
+    padding:  15px 32px;
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+/* Pantalla de juego */
+.juego_comenzo{
+    background-color: rgba(0,128,255,0.5);
+    border-radius: 10px;
+    width: 500px;
+    height: 400px;
+    margin: auto;
+    margin-top: 10%;
+}
+.pregunta{
+    margin-bottom: 30px;
+}
+.boton_juego{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    }
+.boton_juego button{
+        background-color: white;
+        border: none;
+        text-align: center;
+        padding:  13px 30px;
+        font-size: 16px;
+        font-family: Arial, Helvetica, sans-serif;
+        margin: 4px 2px;
+        cursor: pointer;
+    }
+
+    /* configuracion */
+    

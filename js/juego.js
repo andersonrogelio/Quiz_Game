@@ -9,6 +9,11 @@ var premio = {
 };
 premio.jugador = localStorage.getItem("jugador");
 var nivel_juego = 1;
+//muestra info del jugador 
+function info_jugador() {
+    document.getElementById("datos_usuario").innerHTML = "Jugador " + premio.jugador + " puntos acumulados " +premio.puntos;
+}
+info_jugador();
 //Esta funcion me generara un numero aleatorio entre un rango dado
 function numero_aleatorio(inicio,final){
     return inicio + Math.floor(Math.random()*final);
@@ -34,33 +39,41 @@ function cargar_botones(pregunta_actual) {
     <button id="b_`+ posicion_res[3] +`" value = "`+ pregunta_actual.I3 +`">`+ pregunta_actual.I3 +`</button>
     `
     document.getElementById("botones").innerHTML = html;  
+    html = "";
     
 };
 function cargar_pregunta(nivel){
     if (nivel === 1) {
             index_pregunta = numero_aleatorio(0,4);
             console.log(index_pregunta);
-            preguntas_cat_actual = JSON.parse(arreglo_preguntas[index_pregunta][0]);
+
+            //en el index va el nivel y en el cero el index
+            preguntas_cat_actual = JSON.parse(arreglo_preguntas[nivel-1][index_pregunta]);
+            console.log(preguntas_cat_actual);
             cargar_botones(preguntas_cat_actual);
     }
     if (nivel === 2) {
-            index_pregunta = numero_aleatorio(5,9);
-            preguntas_cat_actual = JSON.parse(arreglo_preguntas[index_pregunta][0]);
+            // index_pregunta = numero_aleatorio(5,9);
+            index_pregunta = numero_aleatorio(0,4);
+            preguntas_cat_actual = JSON.parse(arreglo_preguntas[nivel-1][index_pregunta]);
             cargar_botones(preguntas_cat_actual);
     }
     if (nivel === 3) {
-          index_pregunta = numero_aleatorio(10,14);
-            preguntas_cat_actual = JSON.parse(arreglo_preguntas[index_pregunta][0]);
+        //   index_pregunta = numero_aleatorio(10,14);
+        index_pregunta = numero_aleatorio(0,4);
+            preguntas_cat_actual = JSON.parse(arreglo_preguntas[nivel-1][index_pregunta]);
             cargar_botones(preguntas_cat_actual);
     }
     if (nivel === 4) {
-                index_pregunta = numero_aleatorio(15,19);
-            preguntas_cat_actual = JSON.parse(arreglo_preguntas[index_pregunta][0]);
+                // index_pregunta = numero_aleatorio(15,19);
+                index_pregunta = numero_aleatorio(0,4);
+            preguntas_cat_actual = JSON.parse(arreglo_preguntas[nivel-1][index_pregunta]);
             cargar_botones(preguntas_cat_actual);
     }
     if (nivel === 5) {
-                    index_pregunta = numero_aleatorio(20,24);
-            preguntas_cat_actual = JSON.parse(arreglo_preguntas[index_pregunta][0]);
+                    // index_pregunta = numero_aleatorio(20,24);
+                    index_pregunta = numero_aleatorio(0,4);
+            preguntas_cat_actual = JSON.parse(arreglo_preguntas[nivel-1][index_pregunta]);
             cargar_botones(preguntas_cat_actual);
     }
 
@@ -86,12 +99,16 @@ function verificar_respuesta(identificador){
         if (nivel_juego === 5) {
             puntos =+ 30;
             premio.puntos = puntos;
+            alert("Felicitaciones has ganado ")
+            window.location.href = "pantalla_inicial.html";
         }
         nivel_juego = nivel_juego + 1;
         cargar_pregunta(nivel_juego);
+        info_jugador();
     }else{
         console.log(premio);
         localStorage.setItem("puntaje",JSON.stringify(premio));
+        alert("Has perdido");
         window.location.href = "pantalla_inicial.html";
     };
 };
@@ -107,4 +124,8 @@ document.getElementById("b_3").addEventListener("click",function(e){
 });
 document.getElementById("b_4").addEventListener("click",function(e){
     verificar_respuesta("b_4");
+});
+document.getElementById("terminar_juego").addEventListener("click",function(e){
+    localStorage.setItem("puntaje",JSON.stringify(premio));
+    window.location.href = "pantalla_inicial.html";
 });

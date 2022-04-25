@@ -1,5 +1,5 @@
 //creacion de variable que usare
-var categorias = ["Paises","Ciudades","Deportes","Famosos","Curiosidades"]
+var categorias = ["Geografía","Entretenimiento","Historia","Arte y Literatura","Ciencias y Naturaleza"]
 var categoria_selecionada;
 var arreglo_preguntas=[];
 var niveles = 0;
@@ -72,7 +72,7 @@ function siguiente_nivel(){
     //     // arreglo_preguntas.push(JSON.stringify(arreglo_auxiliar));
     //     arreglo_preguntas.push(arreglo_auxiliar);
     // }else
-     if (arreglo_auxiliar.length === 1){
+     if (arreglo_auxiliar.length === 4){
         arreglo_preguntas.push(arreglo_auxiliar);
         // console.log(arreglo_preguntas);
         // console.log(preguntas);

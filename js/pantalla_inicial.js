@@ -1,3 +1,4 @@
+var his_jugadores;
 document.getElementById("crear_juego").addEventListener("click",function(e){
     window.location.href= "configuracion.html";
 });
@@ -13,6 +14,47 @@ var auxiliar = {
     "I2": "",
     "I3":""
 };
+
+//funcion que carga el historial de jgadores 
+function historial() {
+    let html = ""
+    if(localStorage.getItem("historial") === null){
+        // his_jugadores.push(JSON.parse(localStorage.getItem("puntaje")));
+        his_jugadores =JSON.parse(localStorage.getItem("puntaje"));
+        localStorage.setItem("historial",JSON.stringify(his_jugadores));
+        html = `<p><strong>`+ his_jugadores.jugador +`</strong>  puntos: `+ his_jugadores.puntos +`</p>`
+        document.getElementById("historial").innerHTML = html;
+    }
+   // if (localStorage.getItem("puntaje")===null){
+    //}
+    else  {//if(localStorage.getItem("historial")!==null)
+        his_jugadores = [];
+        his_jugadores.push(JSON.parse(localStorage.getItem("historial")));
+        console.log(his_jugadores);
+        if ((his_jugadores.length)>1) {
+            his_jugadores.push(JSON.parse(localStorage.getItem("puntaje")));
+            
+            for (let i = 0; i < his_jugadores.length; i++) {
+                html = html+ `<p><strong>`+ his_jugadores[i].jugador +`</strong>  puntos: `+ his_jugadores[i].puntos +`</p>`;
+            }
+            document.getElementById("historial").innerHTML = html;
+        }else{
+            his_jugadores =JSON.parse(localStorage.getItem("puntaje"));
+            html = `<p><strong>`+ his_jugadores.jugador +`</strong>  puntos: `+ his_jugadores.puntos +`</p>`
+            document.getElementById("historial").innerHTML = html;
+        }
+       
+    }
+
+
+};
+historial();
+document.getElementById("salir_juegos").addEventListener("click",function(e){
+    window.location.href="index.html";
+    localStorage.removeItem("jugador");
+
+
+});
 // var arreglo_preguntas=[auxiliar,auxiliar];
 // console.log(arreglo_preguntas);
 // console.log(JSON.stringify(arreglo_preguntas));
