@@ -1,0 +1,22 @@
+body{
+    background-image: url(../img/OrangeCoral.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+}
+.cont_usuario{
+    background-color: rgba(0,128,255,0.5);
+    border-radius: 10px;
+    width: 300px;
+    height: 150px;
+    margin: auto;
+    margin-top: 20%;
+    /* display: table-cell;
+    vertical-align: middle; */
+}
+.nom_usuario{
+    padding-top: 55px;
+     /* display: table-cell;
+    vertical-align: middle; */
+}
