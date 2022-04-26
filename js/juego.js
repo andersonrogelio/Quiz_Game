@@ -13,12 +13,9 @@ var nivel_juego = 1;
 function numero_aleatorio(inicio,final){
     return inicio + Math.floor(Math.random()*final);
 };
-console.log(numero_aleatorio(1,5));
 //guardo las preguntas guardadas en mi variable arreglo_preguntas
 arreglo_preguntas = JSON.parse(localStorage.getItem("preguntas"));
-console.log(arreglo_preguntas);
-console.log(arreglo_preguntas[0]);
-console.log(JSON.parse(arreglo_preguntas[0][0]));
+
 //muestra info del jugador 
 function info_jugador() {
     document.getElementById("datos_usuario").innerHTML = "Jugador " + premio.jugador + " puntos acumulados " +premio.puntos;
@@ -33,9 +30,8 @@ function cargar_botones(pregunta_actual) {
     document.getElementById("mostrar_pregunta").innerHTML = pregunta_actual.P;
     let html = "";
     let datos = [pregunta_actual.C,pregunta_actual.I1,pregunta_actual.I2,pregunta_actual.I3];
-    console.log(datos);
+    
     datos.sort(() => (Math.random()-0.5));
-    console.log(datos);
 
     html = html + `
     <button id="b_1" value = "`+ datos[0] +`">`+ datos[0] +`</button>
@@ -50,10 +46,8 @@ function cargar_botones(pregunta_actual) {
 function cargar_pregunta(nivel){
     if (nivel === 1) {
             index_pregunta = numero_aleatorio(0,4);
-            console.log(index_pregunta);
 
             preguntas_cat_actual = JSON.parse(arreglo_preguntas[nivel-1][index_pregunta]);
-            console.log(preguntas_cat_actual);
             cargar_botones(preguntas_cat_actual);
     }
     if (nivel === 2) {
@@ -110,7 +104,6 @@ function verificar_respuesta(identificador){
         cargar_pregunta(nivel_juego);
         info_jugador();
     }else{
-        console.log(premio);
         localStorage.setItem("puntaje",JSON.stringify(premio));
         alert("Has perdido");
         window.location.href = "pantalla_inicial.html";
