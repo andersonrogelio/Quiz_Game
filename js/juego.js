@@ -1,7 +1,7 @@
 var preguntas_cat_actual;
+var categoria_actual;
 var arreglo_preguntas;
 var index_pregunta;
-var posicion_res = [1,2,3,4];
 var puntos = 0;
 var premio = {
     "jugador":"",
@@ -9,11 +9,6 @@ var premio = {
 };
 premio.jugador = localStorage.getItem("jugador");
 var nivel_juego = 1;
-//muestra info del jugador 
-function info_jugador() {
-    document.getElementById("datos_usuario").innerHTML = "Jugador " + premio.jugador + " puntos acumulados " +premio.puntos;
-}
-info_jugador();
 //Esta funcion me generara un numero aleatorio entre un rango dado
 function numero_aleatorio(inicio,final){
     return inicio + Math.floor(Math.random()*final);
@@ -24,22 +19,32 @@ arreglo_preguntas = JSON.parse(localStorage.getItem("preguntas"));
 console.log(arreglo_preguntas);
 console.log(arreglo_preguntas[0]);
 console.log(JSON.parse(arreglo_preguntas[0][0]));
+//muestra info del jugador 
+function info_jugador() {
+    document.getElementById("datos_usuario").innerHTML = "Jugador " + premio.jugador + " puntos acumulados " +premio.puntos;
+    categoria_actual = JSON.parse(arreglo_preguntas[nivel_juego-1][0])
+    document.getElementById("cat_pregunta").innerHTML  = "Pregunta de " +  categoria_actual.CAT;
+    //   arreglo_preguntas[nivel-1][index_pregunta]
+}
+info_jugador();
 //funcion que carga mis respuestas a los botones
 function cargar_botones(pregunta_actual) {
     index_pregunta = numero_aleatorio(1,5);
     document.getElementById("mostrar_pregunta").innerHTML = pregunta_actual.P;
     let html = "";
-    console.log(posicion_res);
-    posicion_res.sort(() => (Math.random()-0.5));
-    console.log(posicion_res);
+    let datos = [pregunta_actual.C,pregunta_actual.I1,pregunta_actual.I2,pregunta_actual.I3];
+    console.log(datos);
+    datos.sort(() => (Math.random()-0.5));
+    console.log(datos);
+
     html = html + `
-    <button id="b_`+ posicion_res[0] +`" value = "`+ pregunta_actual.C +`">`+ pregunta_actual.C +`</button>
-    <button id="b_`+ posicion_res[1] +`" value = "`+ pregunta_actual.I1 +`">`+ pregunta_actual.I1 +`</button>
-    <button id="b_`+ posicion_res[2] +`" value = "`+ pregunta_actual.I2 +`">`+ pregunta_actual.I2 +`</button>
-    <button id="b_`+ posicion_res[3] +`" value = "`+ pregunta_actual.I3 +`">`+ pregunta_actual.I3 +`</button>
+    <button id="b_1" value = "`+ datos[0] +`">`+ datos[0] +`</button>
+    <button id="b_2" value = "`+ datos[1] +`">`+ datos[1] +`</button>
+    <button id="b_3" value = "`+ datos[2] +`">`+ datos[2] +`</button>
+    <button id="b_4" value = "`+ datos[3] +`">`+ datos[3] +`</button>
     `
     document.getElementById("botones").innerHTML = html;  
-    html = "";
+    
     
 };
 function cargar_pregunta(nivel){
@@ -47,31 +52,26 @@ function cargar_pregunta(nivel){
             index_pregunta = numero_aleatorio(0,4);
             console.log(index_pregunta);
 
-            //en el index va el nivel y en el cero el index
             preguntas_cat_actual = JSON.parse(arreglo_preguntas[nivel-1][index_pregunta]);
             console.log(preguntas_cat_actual);
             cargar_botones(preguntas_cat_actual);
     }
     if (nivel === 2) {
-            // index_pregunta = numero_aleatorio(5,9);
             index_pregunta = numero_aleatorio(0,4);
             preguntas_cat_actual = JSON.parse(arreglo_preguntas[nivel-1][index_pregunta]);
             cargar_botones(preguntas_cat_actual);
     }
     if (nivel === 3) {
-        //   index_pregunta = numero_aleatorio(10,14);
         index_pregunta = numero_aleatorio(0,4);
             preguntas_cat_actual = JSON.parse(arreglo_preguntas[nivel-1][index_pregunta]);
             cargar_botones(preguntas_cat_actual);
     }
     if (nivel === 4) {
-                // index_pregunta = numero_aleatorio(15,19);
                 index_pregunta = numero_aleatorio(0,4);
             preguntas_cat_actual = JSON.parse(arreglo_preguntas[nivel-1][index_pregunta]);
             cargar_botones(preguntas_cat_actual);
     }
     if (nivel === 5) {
-                    // index_pregunta = numero_aleatorio(20,24);
                     index_pregunta = numero_aleatorio(0,4);
             preguntas_cat_actual = JSON.parse(arreglo_preguntas[nivel-1][index_pregunta]);
             cargar_botones(preguntas_cat_actual);
@@ -83,18 +83,22 @@ function verificar_respuesta(identificador){
         if (nivel_juego === 1) {
             puntos =+ 10;
             premio.puntos = puntos;
+            alert("Felicitaciones pasaste al siguiente nivel ");
         }
         if (nivel_juego === 2) {
             puntos =+ 15;
             premio.puntos = puntos;
+            alert("Felicitaciones pasaste al siguiente nivel ");
         }
         if (nivel_juego === 3) {
             puntos =+ 20;
             premio.puntos = puntos;
+            alert("Felicitaciones pasaste al siguiente nivel ");
         }
         if (nivel_juego === 4) {
             puntos =+ 25;
             premio.puntos = puntos;
+            alert("Felicitaciones pasaste al siguiente nivel ");
         }
         if (nivel_juego === 5) {
             puntos =+ 30;
@@ -112,7 +116,9 @@ function verificar_respuesta(identificador){
         window.location.href = "pantalla_inicial.html";
     };
 };
-cargar_pregunta(nivel_juego);
+if (puntos === 0){
+    cargar_pregunta(nivel_juego);
+} 
 document.getElementById("b_1").addEventListener("click",function(e){
     verificar_respuesta("b_1");
 });
