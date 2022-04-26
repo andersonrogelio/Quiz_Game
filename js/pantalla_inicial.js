@@ -31,18 +31,24 @@ function historial() {
         his_jugadores = [];
         his_jugadores.push(JSON.parse(localStorage.getItem("historial")));
         console.log(his_jugadores);
-        if ((his_jugadores.length)>1) {
+        if (localStorage.getItem("puntaje") !== null) {
             his_jugadores.push(JSON.parse(localStorage.getItem("puntaje")));
+        }
+        // if ((his_jugadores.length)>1) {
+            // his_jugadores.push(JSON.parse(localStorage.getItem("puntaje")));
             
             for (let i = 0; i < his_jugadores.length; i++) {
                 html = html+ `<p><strong>`+ his_jugadores[i].jugador +`</strong>  puntos: `+ his_jugadores[i].puntos +`</p>`;
             }
             document.getElementById("historial").innerHTML = html;
-        }else{
-            his_jugadores =JSON.parse(localStorage.getItem("puntaje"));
-            html = `<p><strong>`+ his_jugadores.jugador +`</strong>  puntos: `+ his_jugadores.puntos +`</p>`
-            document.getElementById("historial").innerHTML = html;
-        }
+        // }else{
+            // his_jugadores =JSON.parse(localStorage.getItem("puntaje"));
+            // html = `<p><strong>`+ his_jugadores.jugador +`</strong>  puntos: `+ his_jugadores.puntos +`</p>`
+            // if (localStorage.getItem("puntaje") !== null) {
+            //     his_jugadores.push(JSON.parse(localStorage.getItem("puntaje")));
+            // }
+            // document.getElementById("historial").innerHTML = html;
+        // }
        
     }
 

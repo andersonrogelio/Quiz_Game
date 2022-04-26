@@ -8,7 +8,8 @@
     <title>Configuración juego de preguntas</title>
 </head>
 <body>
-    <div id="sele_categorias">
+    <div class="controles_pregunta">
+    <div id="sele_categorias" class="categoria">
         <form action="">
             <label for="categoria">Selecciona una categoria en la cual agregar preguntas:</label>
             <select id="categoria">
@@ -18,7 +19,7 @@
         <button id="agregar_preguntas">Agregar preguntas</button>
         <button id="iniciar">Ir al juego</button>
     </div>
-    <div id="preguntas">
+    <div id="preguntas" class="conf_preguntas">
         <h5 id="nivel_pregunta"></h5> <!--Te dice el nivel de preguntas que estas configurando-->
         <form action=""><!--Formulario para ingresar las preguntas-->
             <label for="pregunta">Ingrese la pregunta:</label>
@@ -39,6 +40,7 @@
         <button id="guardar">Guardar Pregunta</button><!--Boton para guardar la pregunta formulada-->
         <button id="siguiente_nivel">Siguiente categoria de preguntas</button><!--boton que se activa solo cuando tenes minimo 5 preguntas ya creadas por el nivel actual-->
     </div>
+</div>
     <script src="js/configuracion.js"></script>
     <script src="js/init.js"></script>
 </body>
