@@ -17,8 +17,11 @@ body{
     /* display: table-cell;
     vertical-align: middle; */
 }
+.cont_usuario h2{
+    text-align: center;
+}
 .nom_usuario{
-    padding-top: 55px;
+    padding-top: 15px;
      /* display: table-cell;
     vertical-align: middle; */
 }
